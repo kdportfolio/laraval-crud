@@ -1,7 +1,10 @@
 <?php
+
+/* app folder name is replaced with App from composer file */
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Main;
+use App\Main; //Database Main file where tables relations are defined
+
 class MainController extends Controller
 {
     public function index()
@@ -10,6 +13,7 @@ class MainController extends Controller
         return view('users.index',compact('users'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -19,6 +23,7 @@ class MainController extends Controller
     {
         return view('users.create');
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -35,6 +40,7 @@ class MainController extends Controller
         return redirect()->route('users.index')
                         ->with('success','Main created successfully');
     }
+
     /**
      * Display the specified resource.
      *
@@ -45,17 +51,20 @@ class MainController extends Controller
     {
         return view('users.show',compact('user'));
     }
-    /**
+
+    /*
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function edit(Main $user)
     {
         return view('users.edit',compact('user'));
     }
-    /**
+
+    /*
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -72,7 +81,8 @@ class MainController extends Controller
         return redirect()->route('users.index')
                         ->with('success','Main updated successfully');
     }
-    /**
+
+    /*
      * Remove the specified resource from storage.
      *
      * @param  int  $id
